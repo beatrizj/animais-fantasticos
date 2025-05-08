@@ -1,19 +1,43 @@
-const tabMenu = document.querySelectorAll(".js-tab-menu li")
-const tabContent = document.querySelectorAll(".js-tab-content section")
+//Images list navigation
+function initTabNav() {
+  const tabMenu = document.querySelectorAll(".js-tab-menu li")
+  const tabContent = document.querySelectorAll(".js-tab-content section")
 
-if (tabMenu.length && tabContent.length) {
-  tabContent[0].classList.add("ativo")
+  if (tabMenu.length && tabContent.length) {
+    tabContent[0].classList.add("ativo")
 
-  function activeTab(i) {
-    tabContent.forEach((item) => {
-      item.classList.remove("ativo")
+    function activeTab(i) {
+      tabContent.forEach((item) => {
+        item.classList.remove("ativo")
+      })
+      tabContent[i].classList.add("ativo")
+    }
+
+    tabMenu.forEach((item, i) => {
+      item.addEventListener("click", () => {
+        activeTab(i)
+      })
     })
-    tabContent[i].classList.add("ativo")
   }
-
-  tabMenu.forEach((item, i) => {
-    item.addEventListener("click", () => {
-      activeTab(i)
-    })
-  })
 }
+initTabNav();
+
+function initAccordion () {
+  const accordionList = document.querySelectorAll(".js-accordion dt")
+  const activeClass = "ativo"
+
+  if (accordionList.length) {
+    accordionList[0].classList.add(activeClass)
+    accordionList[0].nextElementSibling.classList.add(activeClass)
+
+    function activeAccordion() {
+      this.classList.toggle(activeClass)
+      this.nextElementSibling.classList.toggle(activeClass)
+    }
+
+    accordionList.forEach((item) => {
+      item.addEventListener("click", activeAccordion)
+    })
+  }
+}
+initAccordion()
