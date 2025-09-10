@@ -1,7 +1,7 @@
 //Images list navigation
 function initTabNav() {
-  const tabMenu = document.querySelectorAll(".js-tab-menu li")
-  const tabContent = document.querySelectorAll(".js-tab-content section")
+  const tabMenu = document.querySelectorAll("[data-tab='menu'] li")
+  const tabContent = document.querySelectorAll("[data-tab='content'] section")
 
   if (tabMenu.length && tabContent.length) {
     tabContent[0].classList.add("ativo")
@@ -10,7 +10,8 @@ function initTabNav() {
       tabContent.forEach((item) => {
         item.classList.remove("ativo")
       })
-      tabContent[i].classList.add("ativo")
+      const direcao = tabContent[i].dataset.anime
+      tabContent[i].classList.add("ativo", direcao)
     }
 
     tabMenu.forEach((item, i) => {
@@ -24,7 +25,7 @@ initTabNav();
 
 //FAQ animation
 function initAccordion () {
-  const accordionList = document.querySelectorAll(".js-accordion dt")
+  const accordionList = document.querySelectorAll("[data-anime='accordion'] dt")
   const activeClass = "ativo"
 
   if (accordionList.length) {
@@ -45,7 +46,7 @@ initAccordion();
 
 //Smooth scroll
 function initSmoothScroll() {
-  const linksInternos = document.querySelectorAll('.js-menu a[href^="#"]');
+  const linksInternos = document.querySelectorAll('[data-menu="smooth"] a[href^="#"]');
 
   function scrollToSection(e) {
     e.preventDefault();
@@ -65,7 +66,7 @@ initSmoothScroll();
 
 //Scroll animation
 function initScrollAnimation() {
-  const sections = document.querySelectorAll(".js-scroll");
+  const sections = document.querySelectorAll("[data-anime='scroll']");
 
   if (sections.length) {
     const windowHalf = window.innerHeight * 0.6; //pega o valor de 60% da tela do usuário
